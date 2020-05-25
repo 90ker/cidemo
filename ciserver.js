@@ -2,7 +2,8 @@ const http = require('http')
 const child_process = require('child_process')
 let server = http.createServer((req,res)=>{
     child_process.exec('./ci.sh',(err,out,stderr)=>{
-        console.log(out,err)
+        console.log(err)
+        console.log(out)
     })
     res.end("one push")
 });
