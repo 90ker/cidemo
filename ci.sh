@@ -1,5 +1,6 @@
 #! /bin/bash
 git pull
-mvn clean package
+mvn clean
+mvn package
 docker-compose down
 docker-compose up -d
