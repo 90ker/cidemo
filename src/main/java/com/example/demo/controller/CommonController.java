@@ -12,7 +12,7 @@ public class CommonController {
     @RequestMapping(value = "/a")
     public List<Person> findAll(){
         List persons = new ArrayList();
-        for(int i=0;i<40;i++){
+        for(int i=0;i<2;i++){
             Person person = new Person();
             person.setId(i);
             person.setName("p"+i);
