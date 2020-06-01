@@ -5,6 +5,7 @@ let server = http.createServer()
 server.on('request', function(req,res) {
     console.log("push")
     child_process.exec('./ci.sh', function (err, out, stderr) {
+        console.log('aaaa')
         console.log(err)
         console.log(out)
     })
