@@ -1,0 +1,30 @@
+apt-get update
+
+apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+
+curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo add-apt-repository "deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
+
+apt-get update
+
+apt-get install -y docker-ce docker-ce-cli containerd.io
+
+docker info
+
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": ["https://jjwt5w91.mirror.aliyuncs.com"]
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+
+kubeadm join 172.17.68.34:6443 --token abcdef.0123456789abcdef \
+    --discovery-token-ca-cert-hash sha256:b27f3d8aeb3509dd19f8281797e0118e1dd241046e3914c712dc3a34936609f4 
